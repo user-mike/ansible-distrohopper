@@ -1,0 +1,42 @@
+---
+
+# add vscode repo for dnf
+- name: Add vscode repo for dnf
+  become: true
+  ansible.builtin.yum_repository:
+    name: vscode
+    description: vscode repo
+    file: microsoft-vscode
+    baseurl: https://packages.microsoft.com/yumrepos/vscode/
+    gpgcheck: yes
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_facts['pkg_mgr'] == 'dnf'
+
+# add vscode repo for zypper
+- name: Add gpg key for vscode repo for zypper
+  become: true
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+  when: ansible_facts['pkg_mgr'] == 'zypper'    
+- name: Add vscode repo for zypper
+  community.general.zypper_repository:
+    name: vscode
+    repo: 'https://packages.microsoft.com/yumrepos/vscode/'
+    state: present
+    runrefresh: true
+  when: ansible_facts['pkg_mgr'] == 'zypper'
+
+# install vscode deb and enable repo from code.visualstudio.com
+- name: install vscode deb
+  become: true
+  ansible.builtin.apt:
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+  when: ansible_facts['pkg_mgr'] == 'apt'
+
+# install vscode
+- name: install vscode
+  become: true
+  package:
+    name: code
+    state: present

@@ -1,0 +1,6 @@
+---
+
+# list of dnf packages
+package_names:
+  - neofetch
+  - nnn

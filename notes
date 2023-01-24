@@ -1,0 +1,6 @@
+fedora
+
+dnf install ansible
+or
+dnf install ansible-core
+ansible-galaxy collection install community.general

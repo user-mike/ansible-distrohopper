@@ -1,0 +1,6 @@
+---
+
+# list of zypper packages
+package_names:
+  - neofetch
+  - nnn

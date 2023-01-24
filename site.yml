@@ -1,0 +1,27 @@
+---
+
+# distrohopper playbook
+
+- name: Distrohopper default package setup
+  hosts: localhost
+
+  vars_prompt:
+    - name: "install_distro_packages"
+      prompt: "Do you want to install packages from distro package manager (yes/no)?"
+      private: no
+    - name: "install_flatpak"
+      prompt: "Do you want to install Flatpak, enable Flathub and install flatpaks (yes/no)?"
+      private: no
+    - name: "install_vscode_from_microsoft_repo"
+      prompt: "Do you want to install VScode from Microsoft repos (not avalible with pacman) (yes/no)?"
+      private: no
+
+  roles:
+    - role: distro_packages
+      when: install_distro_packages | bool
+
+    - role: flatpak_packages
+      when: install_flatpak | bool
+    
+    - role: vscode_packages
+      when: install_vscode_from_microsoft_repo | bool

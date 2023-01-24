@@ -1,0 +1,14 @@
+---
+
+# list of flatpak packages
+flatpak_package_names:
+  - org.gabmus.whatip
+  - org.gimp.GIMP
+#  - org.mozilla.Thunderbird
+#  - com.github.iwalton3.jellyfin-media-player
+#  - md.obsidian.Obsidian
+#  - org.libretro.RetroArch
+#  - org.qbittorrent.qBittorrent
+#  - org.keepassxc.KeePassXC
+#  - org.remmina.Remmina
+#  - org.videolan.VLC

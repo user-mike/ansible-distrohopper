@@ -1,0 +1,6 @@
+---
+
+# list of apt packages
+package_names:
+  - neofetch
+  - nnn

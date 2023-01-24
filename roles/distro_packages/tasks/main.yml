@@ -1,0 +1,39 @@
+---
+
+# install packages
+
+# include apt package vars
+- name: include apt_package_vars
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: apt_package_vars.yml
+  when: ansible_facts['pkg_mgr'] == 'apt'   
+
+# include dnf package vars
+- name: include dnf_package_vars
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: dnf_package_vars.yml
+  when: ansible_facts['pkg_mgr'] == 'dnf'   
+
+# include zypper package vars
+- name: include zypper_package_vars
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: zypper_package_vars.yml
+  when: ansible_facts['pkg_mgr'] == 'zypper'   
+
+# include pacman package vars
+- name: include pacman_package_vars
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: pacman_package_vars.yml
+  when: ansible_facts['pkg_mgr'] == 'pacman'   
+
+# install packages
+- name: install packages
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ package_names }}"  

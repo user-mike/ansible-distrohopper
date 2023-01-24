@@ -1,0 +1,30 @@
+---
+
+# install flatpak
+- name: install flatpak
+  become: true
+  package:
+    name: flatpak
+    state: present
+
+# flatpak repo
+- name: add flathub flatpak repo
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+# include flatpak package vars
+- name: include flatpak_package_vars
+  ansible.builtin.include_vars:
+    dir: vars
+    files_matching: flatpak_package_vars.yml
+
+# flatpak packages
+- name: install flatpaks packages
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_package_names }}"

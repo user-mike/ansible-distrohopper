@@ -1,0 +1,7 @@
+---
+
+# list of pacman packages
+package_names:
+  - neofetch
+  - nnn
+  
