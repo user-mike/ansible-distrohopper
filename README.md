@@ -35,7 +35,7 @@ The hosts in `site.yml` file is set to "localhost" which is specified in the `in
 
 ### Vars
 ---
-Under the `vars` directory there are six `{package manager}_package_vars.yml` files that contain a list of packages to be installed.  One file for each package manager (dnf, zypper, apt and pacman), one for flatpak packages and one for snap packages.
+Under the `vars` directory there are six `{package manager}_package_vars.yml` files that contain a list of packages to be installed.  One file for each package manager (dnf, zypper, apt and pacman) and one for flatpak packages.
 
 The ansible playbook will skip `{package manager}_package_vars.yml` files that don't relate to the package manager used by the linux distro.  For example if running the ansible playbook for a Ubuntu system the playbook will skip the list of packages in the dnf, zypper and pacman `{package manager}_package_vars.yml` files. 
 
@@ -53,4 +53,3 @@ This role will install flatpak / check flatpak is installed, add flathub repo an
 
 #### VScode Packages
 This role will enable Microsoft repo and install VScode.  This role will only work on linux distros with dnf, zypper and apt package managers.
-
