@@ -20,6 +20,7 @@
     key: https://packages.microsoft.com/keys/microsoft.asc
   when: ansible_facts['pkg_mgr'] == 'zypper'    
 - name: Add vscode repo for zypper
+  become: true
   community.general.zypper_repository:
     name: vscode
     repo: 'https://packages.microsoft.com/yumrepos/vscode/'
